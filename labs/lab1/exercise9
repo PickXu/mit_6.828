@@ -1,0 +1,4 @@
+f010002f: mov $0x0,%ebp
+f0100034: mov $0xf0110000,%esp
+
+The stack is located at virtual address: 0xf0110000, i.e. physical address: 0x00110000.

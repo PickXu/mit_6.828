@@ -1,0 +1,36 @@
+Q1: The interface between printf.c and console.c is function:
+void cputch(int);
+
+Q2: This section of code is used to shift the crt_buf by CRT_COLS*2 bytes to the left to make space for incoming chararcters when the buffer is full.
+
+Q3: a) fmt points to the constant string, "x %d, y %x, z %d\n"; ap points to the variable argument list, [x,y,z]
+    b) cprintf("x %d, y %x, z %d\n", x, y, z)
+    >> vprintf("x %d, y %x, z %d\n", [x,y,z])
+    >> cons_putc ((int)x)
+    >> cons_putc ((int)' ')
+    >> va_arg([x,y,z],int) -> [y,z]
+    >> cons_putc ((int)'1')
+    >> cons_putc ((int)',')
+    >> cons_putc ((int)' ')
+    >> cons_putc ((int)'z')
+    >> cons_putc ((int)' ')
+    >> va_arg ([y,z],int) -> [z]
+    >> cons_putc ((int)'3')
+    >> cons_putc ((int)',')
+    >> cons_putc ((int)' ')
+    >> cons_putc ((int)'z')
+    >> cons_putc ((int)' ')
+    >> va_arg ([z],int) -> []
+    >> cons_putc ((int)'4')
+    >> cons_putc ((int)'\n')
+
+Q4: Output: He110 World
+    If x86 were big-endian, i = 0x726c6400
+
+Q5: According to the man page of va_arg: 
+       "If there is no next argument, or if type is not compatible with the type of
+       the actual next argument (as promoted according  to  the  default  argument
+       promotions), random errors will occur."
+    Therefore, random errors will occur in this case.
+
+Q6: cprintf(..., const char* fmt) 
