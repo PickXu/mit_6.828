@@ -1,0 +1,7 @@
+01-xv6-shell.html
+a.out
+pipe1.c
+pipe2.c
+redirect.c
+sh.c
+x.txt
