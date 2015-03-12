@@ -1,0 +1,43 @@
+Task: Add system call sys_date to xv6
+Steps:
+1. Append "#define SYS_date 22" to syscall.h
+2. Add "extern int sys_date(void);" after "extern int sys_uptime(void);"
+3. Add "[SYS_date] sys_date," to syscalls[]
+4. Create file sysdate.c:
+
+#include "types.h"
+#include "defs.h"
+#include "date.h"
+
+int
+sys_date(void)
+{
+        int addr;
+        if (argint(0, &addr) < 0)
+                return -1;
+        cmostime((struct rtcdate*)addr);
+        return 0;
+}
+5. Add "int date(struct rtcdate*);" to user.h
+6. Append "SYSCALL(date)" to usys.S 
+7. Create user file date.c
+
+#include "types.h"
+#include "user.h"
+#include "date.h"
+
+int
+main(int argc, char *argv[])
+{
+  struct rtcdate r;
+
+  if (date(&r)) {
+    printf(2, "date failed\n");
+    exit();
+  }
+
+  // your code to print the time in any format you like...
+  printf(1, "UTC Time: %d/%d/%d, %d:%d:%d\n", r.year,r.month,r.day,r.hour,r.minute,r.second);
+
+  exit();
+}
