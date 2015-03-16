@@ -14,6 +14,8 @@ extern uint vectors[];  // in vectors.S: array of 256 entry pointers
 struct spinlock tickslock;
 uint ticks;
 
+int mappages(pde_t *pgdir, void *va, uint size, uint pa, int perm);
+
 void
 tvinit(void)
 {
@@ -85,6 +87,18 @@ trap(struct trapframe *tf)
       cprintf("unexpected trap %d from cpu %d eip %x (cr2=0x%x)\n",
               tf->trapno, cpu->id, tf->eip, rcr2());
       panic("trap");
+    }
+    // Handle Page Fault Trap
+    if (tf->trapno == T_PGFLT) {
+	uint a = PGROUNDDOWN(rcr2());
+	char *mem = kalloc();
+	if (mem == 0) {
+	    cprintf("allocuvm out of memory\n");
+	    break;
+	}
+	memset(mem,0,PGSIZE);
+	mappages(proc->pgdir,(void*)a,PGSIZE,v2p(mem),PTE_W|PTE_U);
+	break;
     }
     // In user space, assume process misbehaved.
     cprintf("pid %d %s: trap %d err %d on cpu %d "

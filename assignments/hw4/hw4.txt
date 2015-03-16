@@ -1,0 +1,14 @@
+Modification in xv6/trap.c:
+    // Handle Page Fault Trap
+    if (tf->trapno == T_PGFLT) {
+        uint a = PGROUNDDOWN(rcr2());
+        char *mem = kalloc();
+        if (mem == 0) {
+            cprintf("allocuvm out of memory\n");
+            break;
+        }
+        memset(mem,0,PGSIZE);
+        mappages(proc->pgdir,(void*)a,PGSIZE,v2p(mem),PTE_W|PTE_U);
+        break;
+    }
+
