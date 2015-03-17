@@ -1,0 +1,15 @@
+Code added to xv6/trap.c to implement alarm:
+    if (proc && (tf->cs & 3) == 3){
+      if ((++(proc->ticks))%proc->alarmticks == 0){
+        // Set the original instruction as the return
+        // from handler call
+        if (tf->esp > proc->sz)
+            break;
+        tf->esp -= 4;
+        *(uint*)tf->esp = tf->eip;
+        // Set handler as the next instruction
+        tf->eip = (uint)proc->alarmhandler;
+
+        //cprintf("EIP: %p, SS: %p, ESP: %p(%p), Handler: %p\n",tf->eip,tf->ss,tf->esp, *(void*)tf->esp, proc->alarmhandler);
+      }
+    }

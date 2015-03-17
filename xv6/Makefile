@@ -28,6 +28,7 @@ OBJS = \
 	vectors.o\
 	vm.o\
 	sysdate.o\
+	sysalarm.o\
 
 # Cross-compiling (e.g., on Mac OS X)
 # TOOLPREFIX = i386-jos-elf
@@ -174,6 +175,7 @@ UPROGS=\
 	_wc\
 	_zombie\
 	_date\
+	_alarmtest\
 
 fs.img: mkfs README $(UPROGS)
 	./mkfs fs.img README $(UPROGS)
