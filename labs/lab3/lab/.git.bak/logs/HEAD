@@ -1,0 +1,7 @@
+0000000000000000000000000000000000000000 7b7fd60b4269495a7f6d55daa72f1a48a8626ab7 PickXu <pickxu@gmail.com> 1424071189 +0800	clone: from http://pdos.csail.mit.edu/6.828/2014-jos.git
+7b7fd60b4269495a7f6d55daa72f1a48a8626ab7 d5ac9f9a2309ab4b07c81e1da11459f3544ec450 PickXu <pickxu@gmail.com> 1425550573 +0800	checkout: moving from lab1 to lab2
+d5ac9f9a2309ab4b07c81e1da11459f3544ec450 700937a12a58425185d48ca911a69d8fc75999f4 PickXu <pickxu@gmail.com> 1425550601 +0800	merge lab1: Merge made by the 'recursive' strategy.
+700937a12a58425185d48ca911a69d8fc75999f4 ba3f221541cd9372091310cf453d5ae4340ab19b PickXu <pickxu@gmail.com> 1426596996 +0800	commit: changes to lab2 after handin
+ba3f221541cd9372091310cf453d5ae4340ab19b d760ca9d240fd2788172b28f2afe8bb6e665b759 PickXu <pickxu@gmail.com> 1426597015 +0800	checkout: moving from lab2 to lab3
+d760ca9d240fd2788172b28f2afe8bb6e665b759 7594757a6d104d7fa69811fff06c7f61009ecadb PickXu <pickxu@gmail.com> 1426597168 +0800	commit (merge): changes to lab2 after handin
+7594757a6d104d7fa69811fff06c7f61009ecadb d46ca73a0387b0dc0bb7d3dc043437d1f98dd598 PickXu <pickxu@gmail.com> 1427201752 +0800	commit: lab3 normal exercises done
