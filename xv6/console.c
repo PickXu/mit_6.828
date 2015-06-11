@@ -58,8 +58,10 @@ cprintf(char *fmt, ...)
   char *s;
 
   locking = cons.locking;
-  if(locking)
+  if(locking){
     acquire(&cons.lock);
+    //acquire(&cons.lock);
+  }
 
   if (fmt == 0)
     panic("null fmt");

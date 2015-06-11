@@ -1,0 +1,11 @@
+1. x should have type: uintptr_t
+2. 0x00400000: No
+   0x00800000: No
+   0xef000000: Yes
+   0xefc00000: Yes
+   0xffc00000: Page table for top 4MB of phys memory
+3. During page translation, the permission bit of each page directory entry and page table entry will be checked to see if current instruction is allowed to access specific memory address
+4. 4GB, because each linear address will be translated into 32bit physical address, which ranges from 0x0 to 0xFFFFFFFF, i.e. 4GB.
+5. 4KB*(1+1024)/4GB ~ 1/1024. By hierarchical two-level page mapping
+6. Via indirect jump: jmp *%eax. It is because we have mappings from 0 to 0 and KERNBASE to 0 in the page table which enable memory accesses from both high virtual space and low virtual space .
+

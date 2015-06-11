@@ -136,6 +136,9 @@ iderw(struct buf *b)
 
   acquire(&idelock);  //DOC:acquire-lock
 
+  // HW7: Add sti()
+  //sti();
+
   // Append b to idequeue.
   b->qnext = 0;
   for(pp=&idequeue; *pp; pp=&(*pp)->qnext)  //DOC:insert-queue
@@ -150,6 +153,9 @@ iderw(struct buf *b)
   while((b->flags & (B_VALID|B_DIRTY)) != B_VALID){
     sleep(b, &idelock);
   }
+
+  // HW7: add cli() before release
+  //cli();
 
   release(&idelock);
 }

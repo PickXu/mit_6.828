@@ -1,13 +1,13 @@
 //
 // File descriptors
 //
-
 #include "types.h"
 #include "defs.h"
 #include "param.h"
 #include "fs.h"
 #include "file.h"
 #include "spinlock.h"
+#include "x86.h"
 
 struct devsw devsw[NDEV];
 struct {
@@ -28,13 +28,24 @@ filealloc(void)
   struct file *f;
 
   acquire(&ftable.lock);
+
+  //HW7: Add sti()
+  sti();
+
   for(f = ftable.file; f < ftable.file + NFILE; f++){
     if(f->ref == 0){
       f->ref = 1;
+
+      //HW7: Add cli()
+      cli();
+
       release(&ftable.lock);
       return f;
     }
   }
+  //HW7: Add cli()
+  cli();
+
   release(&ftable.lock);
   return 0;
 }

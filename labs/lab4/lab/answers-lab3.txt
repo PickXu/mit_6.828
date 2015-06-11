@@ -1,0 +1,4 @@
+1. If all exceptions/interrupts share the same handler, the exception/intterupt number cannot be recorded in the trapframe.
+2. Why "int $14" from user code will generate trap 13, instead of trap 14? Because we initilize all the interrupt descriptor in IDT with kernel privilege, and int instruction from user space will cause the general protection exception.
+3. Set the IDT entry for breakpoint with privilege 3
+4. ???
